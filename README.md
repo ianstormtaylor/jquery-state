@@ -1,20 +1,17 @@
 # jQuery State
 
-A jQuery plugin that makes getting/setting states on HTML elements easy and **accessible** without you having to do extra work. Developed by [Ian Storm Taylor](http://twitter.com/ianstormtaylor).
-
-* [Examples](about:blank) (TODO)
-* [Release Notes](about:blank) (TODO)
+A jQuery plugin that makes getting/setting states on HTML elements **easy** and **accessible** without you having to do extra work. Developed by [Ian Storm Taylor](http://twitter.com/ianstormtaylor).
 
 
 ## The Problem
 
-* Ideally you'd set state via HTML attributes only and select off of pseudo-classes like `:disabled`, but HTML doesn't have build in attributes for everything (like `expanded`)…
+* Ideally you'd set state via HTML attributes only and select off of pseudo-classes like `:disabled`, but HTML doesn't have built-in attributes for all situations (like "expanded", "pressed", etc.)…
 
-* So… to maintain accessibility, you need to use ARIA attributes for the cases that aren't covered in HTML, but defining styles based off ARIA attributes isn't an option because it's not performant and doesn't get redrawn when changed in all browsers…
+* So… to stay accessibile, you need to use ARIA attributes for the cases that aren't covered in HTML, but defining styles based off ARIA attributes isn't an option because it's not performant and doesn't get redrawn when changed in all browsers…
 
 * So… to be able to style off these states you have to add helper classes to the elements to be able to keep your styles performant and redrawn…
 
-* But that's a lot to keep track of and write all the time…
+* But… that's a lot to keep track of and write all the time.
 
 
 ## The Solution
@@ -30,6 +27,22 @@ A jQuery plugin that makes getting/setting states on HTML elements easy and **ac
 * **Get and set:** `state('disabled');` vs. `state('disabled', 'true');`
 
 * **Helper functions:** `toggleState()` and `removeState()` are also included to make your code DRYer.
+
+
+
+## Supported States and Values
+
+	busy:			true, false
+   checked:		true, false, mixed
+   disabled:	true, false
+   expanded:	true, false
+   grabbed:		true, false
+   hidden:		true, false
+   invalid:		true, false, grammar, spelling
+   pressed:		true, false, mixed
+   readonly:	true, false
+   required:	true, false
+   selected:	true, false
 
 
 
@@ -85,4 +98,4 @@ A jQuery plugin that makes getting/setting states on HTML elements easy and **ac
 
 ## Feedback
 
-Please open an issue to request a feature, submit a bug report, or just to offer feedback. I'm also on Twitter as [@ianstormtaylor](http://twitter.com/ianstormtaylor).
+I'm down for all feedback. Open an issue or I'm also on Twitter as [@ianstormtaylor](http://twitter.com/ianstormtaylor).
