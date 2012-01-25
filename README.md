@@ -57,7 +57,7 @@ A jQuery plugin that makes getting/setting states on HTML elements **easy** and 
         $('#el').state('hidden', true);
 
         $('#el').state({ 'readonly' : false,
-                        'invalid' : false });
+                         'invalid' : false });
 
         $('#el').state('expanded');
 
