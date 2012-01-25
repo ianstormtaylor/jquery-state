@@ -32,17 +32,17 @@ A jQuery plugin that makes getting/setting states on HTML elements **easy** and 
 
 ## Supported States and Values
 
-		busy:			true, false
-		checked:		true, false, mixed
-		disabled:	true, false
-		expanded:	true, false
-		grabbed:		true, false
-		hidden:		true, false
-		invalid:		true, false, grammar, spelling
-		pressed:		true, false, mixed
-		readonly:	true, false
-		required:	true, false
-		selected:	true, false
+		busy:       true, false
+		checked:    true, false, mixed
+		disabled:   true, false
+		expanded:   true, false
+		grabbed:    true, false
+		hidden:     true, false
+		invalid:    true, false, grammar, spelling
+		pressed:    true, false, mixed
+		readonly:   true, false
+		required:   true, false
+		selected:   true, false
 
 
 
