@@ -32,17 +32,31 @@ A jQuery plugin that makes getting/setting states on HTML elements **easy** and 
 
 ## Supported States and Values
 
-		busy:       true, false
-		checked:    true, false, mixed
-		disabled:   true, false
-		expanded:   true, false
-		grabbed:    true, false
-		hidden:     true, false
-		invalid:    true, false, grammar, spelling
-		pressed:    true, false, mixed
-		readonly:   true, false
-		required:   true, false
-		selected:   true, false
+* **busy**
+* **checked** Also accepts value of `mixed` for indeterminate states.
+* **disabled**
+* **expanded**
+* **grabbed**
+* **hidden**
+* **invalid** Also allows for values of `grammar`, `spelling`, and `warning`, to describe the reason for invalidity. In those cases, the `invalid` and `grammar/spelling/warning` helper class will be added to the element. (ie. if you called `state('invalid', 'spelling')`, your element will receive `.invalid.spelling` classes.
+* **pressed** Also accepts value of `mixed` for indeterminate states.
+* **readonly**
+* **required**
+* **selected**
+
+
+## Helpful Aliases
+
+In case you forget what you're doing, or even just to make certain parts of your code more readable, several aliases are allowed:
+
+* **enabled** -> disabled (inverse)
+* **collapsed** -> expanded (inverse)
+* **visible** -> hidden (inverse)
+* **valid** -> invalid (inverse)
+* **read-only** -> readonly
+* **optional** -> required (inverse)
+
+Some of the aliases are inverted ones, in other words if you call `.state('enabled', false)`, it will be equivalent to calling `.state('disabled', true)`.
 
 
 
@@ -69,7 +83,7 @@ A jQuery plugin that makes getting/setting states on HTML elements **easy** and 
 
 *   **toggleState(key, ..., ...)**
 
-    Toggle the value of one or more states. 
+    Toggle the value of one or more states.
 
     _Examples:_
 
