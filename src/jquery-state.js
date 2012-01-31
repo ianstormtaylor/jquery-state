@@ -145,7 +145,7 @@
                 else if (key === 'readonly') {
 
                     if (this.is('input, textarea')) {
-                        _setBooleanAttribute(this, key, 'read-only');
+                        _setBooleanAttribute(this, 'read-only', value);
                     }
                 }
 
