@@ -141,16 +141,9 @@
                         _setBooleanAttribute(this, key, value);
                     }
                 }
-                // readonly, only for inputs and textareas (special case because of alias)
-                else if (key === 'readonly') {
-
-                    if (this.is('input, textarea')) {
-                        _setBooleanAttribute(this, 'read-only', value);
-                    }
-                }
-
+                // readonly,
                 // required, only for inputs and textareas
-                else if (key === 'required') {
+                else if (key === 'required' || key === 'readonly') {
 
                     if (this.is('input, textarea')) {
                         _setBooleanAttribute(this, key, value);
@@ -301,12 +294,9 @@
                     key === 'selected' ||
                     key === 'disabled' ||
                     key === 'required' ||
+                    key === 'readonly' ||
                     key === 'hidden') {
                     _self.removeAttr(key);
-                }
-                // Special case for readonly alias.
-                if (key === 'readonly') {
-                    _self.removeAttr('read-only');
                 }
                 // Remember to remove the non-key classes that
                 // are added to certain states above.
