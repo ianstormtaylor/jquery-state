@@ -87,15 +87,11 @@
             // Normalize certain values.
             if (value === true)
                 value = 'true';
-
-            if (value === false)
+            else if (value === false)
                 value = 'false';
 
             // Allow for aliases.
             if (key.match(_stateAliasesMatch)) {
-
-                // Use the non-alias key.
-                key = _stateAliasMap[key];
 
                 // Swap the value for inverted aliases.
                 if (key.match(_stateInvertedAliasesMatch)) {
@@ -104,6 +100,9 @@
                     else if (value === 'false')
                         value = 'true';
                 }
+
+                // Use the non-alias key.
+                key = _stateAliasMap[key];
             }
 
             // Does it match one of our states?
