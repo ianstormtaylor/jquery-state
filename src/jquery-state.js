@@ -2,32 +2,32 @@
 
     // Some private stuff.
     var // States we know about.
-        _states = ['busy'
-                 , 'checked'
-                 , 'disabled'
-                 , 'expanded'
-                 , 'grabbed'
-                 , 'hidden'
-                 , 'invalid'
-                 , 'pressed'
-                 , 'readonly'
-                 , 'required'
-                 , 'selected']
+        _states = ['^busy$'
+                 , '^checked$'
+                 , '^disabled$'
+                 , '^expanded$'
+                 , '^grabbed$'
+                 , '^hidden$'
+                 , '^invalid$'
+                 , '^pressed$'
+                 , '^readonly$'
+                 , '^required$'
+                 , '^selected$']
       , _statesMatch = new RegExp(_states.join('|'))
 
       // Aliases, to be forgiving.
-      , _stateAliases = ['read-only'
-                       , 'valid'
-                       , 'visible'
-                       , 'optional'
-                       , 'enabled']
+      , _stateAliases = ['^read-only$'
+                       , '^valid$'
+                       , '^visible$'
+                       , '^optional$'
+                       , '^enabled$']
       , _stateAliasesMatch = new RegExp(_stateAliases.join('|'))
 
       // Inverted aliases, yes its complicated.
-      , _stateInvertedAliases = ['valid'
-                               , 'visible'
-                               , 'optional'
-                               , 'enabled']
+      , _stateInvertedAliases = ['^valid$'
+                               , '^visible$'
+                               , '^optional$'
+                               , '^enabled$']
       , _stateInvertedAliasesMatch = new RegExp(_stateInvertedAliases.join('|'))
 
       // What do the aliases map to?
