@@ -89,6 +89,17 @@ module('states', {
   }
 });
 
+test('unknown', function () {
+
+  ok(!$el.state('unknown'), 'element doesnt have unknown state');
+
+  $el.state('unknown', true);
+  ok(!$el.attr('unknown'), 'doesnt have unknown attribute');
+  ok($el.hasClass('unknown'), 'has unknown class');
+  ok(!$el.attr('aria-unknown'), 'doesnt have unknown aria attribute');
+  ok($el.state('unknown'), 'has unknown state');
+});
+
 test('hidden', function () {
 
   ok(!$el.state('hidden'), 'element doesnt have hidden state');
@@ -137,6 +148,7 @@ test('grabbed', function () {
   ok(!$el.state('grabbed'), 'element doesnt have grabbed state');
 
   $el.state('grabbed', true);
+  ok(!$el.attr('grabbed'), 'doesnt have grabbed attribute');
   ok($el.hasClass('grabbed'), 'has grabbed class');
   ok($el.attr('aria-grabbed'), 'has grabbed aria attribute');
   ok($el.state('grabbed'), 'has grabbed state');
@@ -158,6 +170,7 @@ test('pressed', function () {
   ok(!$el.state('pressed'), 'element doesnt have pressed state');
 
   $el.state('pressed', true);
+  ok(!$el.attr('pressed'), 'doesnt have pressed attribute');
   ok($el.hasClass('pressed'), 'has pressed class');
   ok($el.attr('aria-pressed'), 'has pressed aria attribute');
   ok($el.state('pressed'), 'has pressed state');
@@ -170,6 +183,7 @@ test('read-only', function () {
   $el.state('read-only', true);
   ok($el.attr('read-only'), 'has read-only attribute');
   ok($el.hasClass('read-only'), 'has read-only class');
+  ok(!$el.attr('aria-read-only'), 'doesnt have read-only aria attribute');
   ok($el.attr('aria-readonly'), 'has readonly aria attribute');
   ok($el.state('read-only'), 'has read-only state');
 });
@@ -201,6 +215,7 @@ test('loading', function () {
   ok(!$el.state('loading'), 'element doesnt have loading state');
 
   $el.state('loading', true);
+  ok(!$el.attr('loading'), 'doesnt have loading attribute');
   ok($el.hasClass('loading'), 'has loading class');
   ok($el.attr('aria-busy'), 'has busy aria attribute');
   ok($el.state('loading'), 'has loading state');
