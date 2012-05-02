@@ -72,6 +72,8 @@ Some of the aliases are inverted ones, in other words if you call `.state('enabl
 
         $('#el').state('hidden', true);
 
+        $('#el').state('aggregated', false);
+
         $('#el').state({'readonly' : false,
                         'invalid'  : false});
 

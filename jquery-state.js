@@ -84,12 +84,13 @@
   // best of all three worlds:
   //
   // * HTML attributes when available
-  // * ARIA attributes for semantics when not
+  // * ARIA attributes for semantics when available
   // * Helper classes for selecting always
   //
   // Examples:
   // $('input').state('disabled', 'true');
   // $('.dropdown').state('expanded', 'true');
+  // $('.data').state('aggregated', 'true');
   // $('li').state('selected', 'true');
 
   $.fn.state = function (state, value) {
