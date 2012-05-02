@@ -21,9 +21,9 @@ A jQuery plugin that makes getting/setting states on HTML elements **easy** and 
 
 ## Features
 
-* **Memorable syntax:** `state('disabled', 'true');`
+* **Memorable syntax:** `state('disabled', true);`
 
-* **Get and set:** `state('disabled');` vs. `state('disabled', 'true');`
+* **Get and set:** `state('disabled');` vs. `state('disabled', true);`
 
 * **Helper functions:** `toggleState()` and `removeState()` are also included to make your code DRYer.
 
@@ -91,7 +91,7 @@ Some of the aliases are inverted ones, in other words if you call `.state('enabl
 
         $('#el').toggleState('hidden');
 
-        $('#el').toggleState('readonly', true);
+        $('#el').toggleState('read-only', true);
 
     _Parameters:_
 
@@ -104,7 +104,7 @@ Some of the aliases are inverted ones, in other words if you call `.state('enabl
 
     _Examples:_
 
-        $('#el').removeState('readonly');
+        $('#el').removeState('read-only');
 
         $('#el').removeState('selected expanded');
 
