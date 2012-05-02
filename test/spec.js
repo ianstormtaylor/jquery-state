@@ -4,6 +4,13 @@ module('core', {
   }
 });
 
+test('methods', function () {
+
+  ok($el.state, 'element has state method');
+  ok($el.toggleState, 'element has toggleState method');
+  ok($el.removeState, 'element has removeState method');
+});
+
 test('set state', function () {
 
   ok(!$el.hasClass('hidden'), 'element doesnt have class to start');
