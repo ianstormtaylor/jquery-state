@@ -1,4 +1,5 @@
-(function ($, undefined) {
+/*jshint asi:true */
+;(function ($, undefined) {
 
   // Some private stuff.
   var _specialMatch = new RegExp([
@@ -13,7 +14,7 @@
     '^read-only$',
     '^required$',
     '^selected$'
-  ].join('|'));
+  ].join('|'))
 
   // States that take boolean HTML attributes.
   var _booleanMatch = new RegExp([
@@ -24,7 +25,7 @@
     '^read-only$',
     '^required$',
     '^selected$'
-  ].join('|'));
+  ].join('|'))
 
   // Aliases, to be forgiving.
   var _aliasMatch = new RegExp([
@@ -34,7 +35,7 @@
     '^visible$',
     '^optional$',
     '^enabled$'
-  ].join('|'));
+  ].join('|'))
 
   // What do the aliases map to?
   var _aliasMap = {
@@ -44,7 +45,7 @@
     'visible'    : 'hidden',
     'optional'   : 'required',
     'enabled'    : 'disabled'
-  };
+  }
 
   // Inverted aliases, yes its complicated.
   var _invertedAliasMatch = new RegExp([
@@ -53,28 +54,28 @@
     '^visible$',
     '^optional$',
     '^enabled$',
-  ].join('|'));
+  ].join('|'))
 
   // ARIA-specific aliases... I know...
   var _ariaAliasMatch = new RegExp([
     '^loading$',
     '^read-only$',
     '^read-write$'
-  ].join('|'));
+  ].join('|'))
 
   var _ariaAliasMap = {
     'loading'    : 'busy',
     'read-only'  : 'readonly',
     'read-write' : 'readonly'
-  };
+  }
 
   // A method that changes boolean HTML attributes
   var _setBooleanAttribute = function ($element, key, value) {
     if (value === 'true' || value === true)
-      $element.attr(key, key);
+      $element.attr(key, key)
     else
-      $element.removeAttr(key);
-  };
+      $element.removeAttr(key)
+  }
 
 
   // jQuery.state()
@@ -88,54 +89,54 @@
   // * Helper classes for selecting always
   //
   // Examples:
-  // $('input').state('disabled', 'true');
-  // $('.dropdown').state('expanded', 'true');
-  // $('.data').state('aggregated', 'true');
-  // $('li').state('selected', 'true');
+  // $('input').state('disabled', 'true')
+  // $('.dropdown').state('expanded', 'true')
+  // $('.data').state('aggregated', 'true')
+  // $('li').state('selected', 'true')
 
   $.fn.state = function (state, value) {
 
     // Many states? One at a time, yo.
     if (typeof state === 'object') {
       for (var i in state) {
-        this.state(i, state[i]);
+        this.state(i, state[i])
       }
-      return this;
+      return this
     }
 
     var isAlias         = state.match(_aliasMatch),
-        isInvertedAlias = state.match(_invertedAliasMatch);
+        isInvertedAlias = state.match(_invertedAliasMatch)
 
-    if (isAlias) state = _aliasMap[state];
+    if (isAlias) state = _aliasMap[state]
 
     var isSpecial   = state.match(_specialMatch),
         isBoolean   = state.match(_booleanMatch),
-        isAriaAlias = state.match(_ariaAliasMatch);
+        isAriaAlias = state.match(_ariaAliasMatch)
 
     // Get, use the class.
     if (value === undefined)
-      return isInvertedAlias ? !this.hasClass(state) : this.hasClass(state);
+      return isInvertedAlias ? !this.hasClass(state) : this.hasClass(state)
 
     // Normalize values.
-    if (value === 'false') value = false;
-    value = value ? true : false;
+    if (value === 'false') value = false
+    value = value ? true : false
 
-    if (isInvertedAlias) value = !value;
+    if (isInvertedAlias) value = !value
 
     // Set, remove?
-    if (!value) return this.removeState(state);
+    if (!value) return this.removeState(state)
 
     if (isSpecial) {
-      if (isBoolean) _setBooleanAttribute(this, state, value);
-      var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state;
-      this.attr('aria-' + ariaKey, value);
+      if (isBoolean) _setBooleanAttribute(this, state, value)
+      var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state
+      this.attr('aria-' + ariaKey, value)
     }
 
-    if (value) this.addClass(state);
+    if (value) this.addClass(state)
 
     // Yeh yeh my chain heavy.
-    return this;
-  };
+    return this
+  }
 
 
   // jQuery.toggleState()
@@ -145,15 +146,15 @@
 
   $.fn.toggleState = function (state, switcher) {
 
-    if (state === undefined) return;
+    if (state === undefined) return
 
-    var value = (switcher !== undefined ? switcher : !this.hasClass(state));
+    var value = (switcher !== undefined ? switcher : !this.hasClass(state))
 
-    this.state(state, value);
+    this.state(state, value)
 
     // Mah chain too heavy.
-    return this;
-  };
+    return this
+  }
 
 
   // jQuery.removeState()
@@ -164,33 +165,33 @@
 
   $.fn.removeState = function (states) {
 
-    if (states === undefined) return undefined;
+    if (states === undefined) return undefined
 
-    states = states.split(' ');
+    states = states.split(' ')
 
-    var self = this;
+    var self = this
     $.each(states, function (i, state) {
 
       var isAlias         = state.match(_aliasMatch),
           isAriaAlias     = state.match(_ariaAliasMatch),
-          isInvertedAlias = state.match(_invertedAliasMatch);
+          isInvertedAlias = state.match(_invertedAliasMatch)
 
-      if (isAlias) state = _aliasMap[state];
+      if (isAlias) state = _aliasMap[state]
 
       var isSpecial = state.match(_specialMatch),
-          isBoolean = state.match(_booleanMatch);
+          isBoolean = state.match(_booleanMatch)
 
       if (isSpecial) {
-        if (isBoolean) self.removeAttr(state);
-        var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state;
-        self.removeAttr('aria-' + ariaKey);
+        if (isBoolean) self.removeAttr(state)
+        var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state
+        self.removeAttr('aria-' + ariaKey)
       }
 
-      self.removeClass(state);
-    });
+      self.removeClass(state)
+    })
 
     // Mah chain broke the levee.
-    return this;
-  };
+    return this
+  }
 
 })(jQuery);
