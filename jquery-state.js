@@ -92,28 +92,28 @@
   // $('.dropdown').state('expanded', 'true');
   // $('li').state('selected', 'true');
 
-  $.fn.state = function (key, value) {
+  $.fn.state = function (state, value) {
 
     // Many states? One at a time, yo.
-    if (typeof key === 'object') {
-      for (var i in key) {
-        this.state(i, key[i]);
+    if (typeof state === 'object') {
+      for (var i in state) {
+        this.state(i, state[i]);
       }
       return this;
     }
 
-    var isAlias         = key.match(_aliasMatch),
-        isInvertedAlias = key.match(_invertedAliasMatch);
+    var isAlias         = state.match(_aliasMatch),
+        isInvertedAlias = state.match(_invertedAliasMatch);
 
-    if (isAlias) key = _aliasMap[key];
+    if (isAlias) state = _aliasMap[state];
 
-    var isSpecial   = key.match(_specialMatch),
-        isBoolean   = key.match(_booleanMatch),
-        isAriaAlias = key.match(_ariaAliasMatch);
+    var isSpecial   = state.match(_specialMatch),
+        isBoolean   = state.match(_booleanMatch),
+        isAriaAlias = state.match(_ariaAliasMatch);
 
     // Get, use the class.
     if (value === undefined)
-      return isInvertedAlias ? !this.hasClass(key) : this.hasClass(key);
+      return isInvertedAlias ? !this.hasClass(state) : this.hasClass(state);
 
     // Normalize values.
     if (value === 'false') value = false;
@@ -122,15 +122,15 @@
     if (isInvertedAlias) value = !value;
 
     // Set, remove?
-    if (!value) return this.removeState(key);
+    if (!value) return this.removeState(state);
 
     if (isSpecial) {
-      if (isBoolean) _setBooleanAttribute(this, key, value);
-      var ariaKey = (isAriaAlias) ? _ariaAliasMap[key] : key;
+      if (isBoolean) _setBooleanAttribute(this, state, value);
+      var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state;
       this.attr('aria-' + ariaKey, value);
     }
 
-    if (value) this.addClass(key);
+    if (value) this.addClass(state);
 
     // Yeh yeh my chain heavy.
     return this;
@@ -157,37 +157,35 @@
 
   // jQuery.removeState()
   //
-  // A helper included with jQuery.state() to make removing states easier. You
-  // can pass in multiple arguments to remove multiple states at once.
+  // A helper included with jQuery.state() to make removing states easier.
+  // Multiple states can be removed at the same time by passing in a
+  // space-separated list of states.
 
-  $.fn.removeState = function () {
+  $.fn.removeState = function (states) {
 
-    if (arguments.length === 0) return undefined;
+    if (states === undefined) return undefined;
 
-    // De-pseudo-ify.
-    var args = [];
-    if (arguments.length === 1) args = new Array(arguments[0]);
-    else args = $.makeArray(arguments);
+    states = states.split(' ');
 
     var self = this;
-    $.each(args, function (i, key) {
+    $.each(states, function (i, state) {
 
-      var isAlias         = key.match(_aliasMatch),
-          isAriaAlias     = key.match(_ariaAliasMatch),
-          isInvertedAlias = key.match(_invertedAliasMatch);
+      var isAlias         = state.match(_aliasMatch),
+          isAriaAlias     = state.match(_ariaAliasMatch),
+          isInvertedAlias = state.match(_invertedAliasMatch);
 
-      if (isAlias) key = _aliasMap[key];
+      if (isAlias) state = _aliasMap[state];
 
-      var isSpecial = key.match(_specialMatch),
-          isBoolean = key.match(_booleanMatch);
+      var isSpecial = state.match(_specialMatch),
+          isBoolean = state.match(_booleanMatch);
 
       if (isSpecial) {
-        if (isBoolean) self.removeAttr(key);
-        var ariaKey = (isAriaAlias) ? _ariaAliasMap[key] : key;
+        if (isBoolean) self.removeAttr(state);
+        var ariaKey = (isAriaAlias) ? _ariaAliasMap[state] : state;
         self.removeAttr('aria-' + ariaKey);
       }
 
-      self.removeClass(key);
+      self.removeClass(state);
     });
 
     // Mah chain broke the levee.

@@ -73,7 +73,7 @@ test('remove state', function () {
   });
   ok($el.state('hidden') && $el.state('disabled'), 'element has multi states');
 
-  $el.removeState('hidden', 'disabled');
+  $el.removeState('hidden disabled');
   ok(!$el.state('hidden') && !$el.state('disabled'), 'can remove multi states');
 });
 
