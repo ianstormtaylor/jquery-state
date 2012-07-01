@@ -55,9 +55,6 @@ test('toggle state', function () {
 
   $el.toggleState('hidden');
   ok($el.state('hidden'), 'can toggle a state');
-
-  $el.toggleState('hidden', true);
-  ok($el.state('hidden'), 'can toggle a state with a switch');
 });
 
 test('remove state', function () {

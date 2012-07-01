@@ -78,7 +78,7 @@
   }
 
 
-  // jQuery.state()
+  // ### $.state()
   //
   // A function that makes setting state using HTML attributes,
   // ARIA attributes and HTML classes very easy, giving you the
@@ -133,38 +133,28 @@
     }
 
     if (value) this.addClass(state)
-
-    // Yeh yeh my chain heavy.
+    // Yeh yeh my chain heavy
     return this
   }
 
 
-  // jQuery.toggleState()
+  // ### $.toggleState()
   //
-  // A helper included with jQuery.state() to make toggling values much more
-  // DRY. Second argument is an optional switch of the value to toggle to.
-
-  $.fn.toggleState = function (state, switcher) {
-
+  // A helper included with jQuery.state() to make toggling values DRYer.
+  $.fn.toggleState = function (state) {
     if (state === undefined) return
-
-    var value = (switcher !== undefined ? switcher : !this.hasClass(state))
-
-    this.state(state, value)
-
-    // Mah chain too heavy.
+    this.state(state, !this.hasClass(state))
+    // Mah chain to heavy
     return this
   }
 
 
-  // jQuery.removeState()
+  // ### $.removeState()
   //
   // A helper included with jQuery.state() to make removing states easier.
   // Multiple states can be removed at the same time by passing in a
   // space-separated list of states.
-
   $.fn.removeState = function (states) {
-
     if (states === undefined) return undefined
 
     states = states.split(' ')
@@ -189,8 +179,7 @@
 
       self.removeClass(state)
     })
-
-    // Mah chain broke the levee.
+    // Mah chain broke the levee
     return this
   }
 
